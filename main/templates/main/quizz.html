@@ -1,0 +1,212 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/jpeg" href="{% static 'main/Screenshot_27-10-2025_10910_www.bing.com.jpeg' %}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Example Interview Quiz</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #004aad;
+      color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .quiz-container {
+      background: linear-gradient(grey,white);
+      border-radius: 10px;
+      padding: 30px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #38bdf8;
+    }
+
+    .question {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    button.option {
+      background: grey;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 1rem;
+    }
+
+    button.option:hover {
+      background: #2563eb;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .next-btn {
+      margin-top: 20px;
+      background: #22c55e;
+      border: none;
+      color: black;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .next-btn:hover {
+      background: #16a34a;
+    }
+
+    .result {
+      font-size: 1.3rem;
+      color: #facc15;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+   <div class="quiz-container">
+    <h1>🤖 Interview Quiz</h1>
+    <div id="quiz">
+      <div class="question" id="question"></div>
+      <div class="options" id="options"></div>
+      <button class="next-btn hidden" id="nextBtn">Next →</button><br>
+      <a href="{% url 'home' %}">Redirect to home</a>
+      <div class="result hidden" id="result"></div>
+    </div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "You’re in a job interview. One candidate is perfect but emotionless, another is creative and nervous. Who gets the job in 2030?",
+        options: [
+          "The perfect one",
+          "The nervous one",
+          "Both (AI + human teamwork!)",
+          "Depends who brings snacks"
+        ],
+        correct: 2
+      },
+      {
+        question: "Which of these is actually a real AI-related job title?",
+        options: [
+          "Chief Prompting Officer",
+          "AI Ethicist",
+          "Machine Whisperer",
+          "Algorithm Therapist"
+        ],
+        correct: 1
+      },
+      {
+        question: "If AI auto-writes all your emails, what’s the most important skill to keep?",
+        options: [
+          "Grammar",
+          "Emotional intelligence",
+          "Typing speed",
+          "Copy-paste mastery"
+        ],
+        correct: 1
+      },
+      {
+        question: "What do you think is the main Goal of our teams Project",
+        options: [
+            "To Conduct Manual Interviews",
+            "To make hiring faster , smarter and more skill based",
+            "to play games",
+            "To post random Job ads and replace humans"
+        ],
+        correct: 1
+      },
+      {
+        question: "How much do you Rate our group - 'TEAM 4' presentation?",
+        options: [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+        ],
+        correct:4
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const nextBtn = document.getElementById("nextBtn");
+    const resultEl = document.getElementById("result");
+
+    function loadQuestion() {
+      const q = quizData[currentQuestion];
+      questionEl.textContent = `Q${currentQuestion + 1}: ${q.question}`;
+      optionsEl.innerHTML = "";
+      q.options.forEach((opt, index) => {
+        const btn = document.createElement("button");
+        btn.classList.add("option");
+        btn.textContent = opt;
+        btn.onclick = () => selectOption(index);
+        optionsEl.appendChild(btn);
+      });
+    }
+
+    function selectOption(selected) {
+      const correct = quizData[currentQuestion].correct;
+      const buttons = document.querySelectorAll(".option");
+      buttons.forEach((btn, idx) => {
+        if (idx === correct) btn.style.background = "#22c55e";
+        else if (idx === selected) btn.style.background = "#ef4444";
+        btn.disabled = true;
+      });
+      if (selected === correct) score++;
+      nextBtn.classList.remove("hidden");
+    }
+
+    function showResult() {
+      questionEl.textContent = "🎉 Quiz Complete!";
+      optionsEl.innerHTML = "";
+      nextBtn.classList.add("hidden");
+      resultEl.classList.remove("hidden");
+      resultEl.textContent = `You got ${score} out of ${quizData.length} correct. 🚀`;
+    }
+
+    nextBtn.addEventListener("click", () => {
+      currentQuestion++;
+      if (currentQuestion < quizData.length) {
+        nextBtn.classList.add("hidden");
+        loadQuestion();
+      } else {
+        showResult();
+      }
+    });
+
+    // Initialize quiz
+    loadQuestion();
+  </script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/jpeg" href="{% static 'main/Screenshot_27-10-2025_10910_www.bing.com.jpeg' %}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VassConnect - Learn & Get Hired</title>
+  <style>
+    /* ======= Global Styles ======= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    header {
+      background-color: #004aad;
+      color: #fff;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    ul li a:hover {
+      color: #ffd700;
+    }
+
+    /* ======= Sections ======= */
+    section {
+      padding: 80px 0;
+    }
+
+    section:nth-child(even) {
+      background: #e9f2ff;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #004aad;
+    }
+
+    p {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #004aad;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #003580;
+    }
+
+    /* ======= Footer ======= */
+    footer {
+      background-color: #004aad;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 0.9rem;
+    }
+
+    /* ======= Responsive ======= */
+    @media (max-width: 768px) {
+      ul {
+        flex-direction: column;
+        background: #003580;
+        position: absolute;
+        top: 65px;
+        right: 0;
+        width: 200px;
+        display: none;
+      }
+      ul.show {
+        display: flex;
+      }
+      .menu-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 1.5rem;
+      }
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">VASS CONNECT</div>
+        <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+        <ul id="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <a href="{% url 'skills' %}">Learn Skills</a>
+          <li><a href="#jobs">Jobs</a></li>
+          <li><a href="#interviews">Interviews</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'quizz' %}">Quiz</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======= Home Section ======= -->
+  <section id="home">
+    <div class="container">
+      <h2>Welcome to VassConnect</h2>
+      <p>Your one-stop platform to learn in-demand skills and apply for top industry jobs.</p>
+      <div style="text-align:center;">
+        <a href="#skills" class="btn">Start Learning</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= About ======= -->
+  <section id="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>VassConnect bridges the gap between learning and employment. We offer curated courses, real-world projects, and a job portal to connect learners with recruiters. Our goal is to empower you with the skills and opportunities needed to thrive in today’s job market.</p>
+      <p>As we see the AI's major role in today's society, hence training our platform users with uplift and latest skill including AI and as well updating their profiles ourself on our website so that companies can look and interview them on the same platform encouraging more jobs and opportunities</p>
+      <p><b>The Team Consists Of Four people</b></p>
+      <p>Vasmitha Chowdary</p>
+      <p>Sairam D</p>
+      <p>Abhishek Reddy</p>
+      <p>Shreyas Hari</p>
+      <p>We hearby thank our Teacher "Mr Sayant Vijay" sir for giving us this great opportunity of presenting today</p>
+      <p>The name Vass comes from the first letters of our team member's names!</p>
+      </div>
+  </section>
+
+  <!-- ======= Learn Skills ======= -->
+  <section id="skills">
+    <div class="container">
+      <h2>Learn Skills</h2>
+      <p>Explore courses in programming, design, marketing, and more — taught by industry experts.</p>
+      <div style="text-align:center;">
+        <a href="{% url 'skills' %}" class="btn">Explore Courses</a><br><br>
+        <p>Click on the above button to redirect to skills page!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Jobs ======= -->
+  <section id="jobs">
+    <div class="container">
+      <h2>Jobs Portal</h2>
+      <p>Apply for jobs across multiple industries. Upload your resume and connect directly with employers.</p>
+      <div style="text-align:center;">
+        <a onclick="alert('currently doesnt work :)')" href="#" class="btn">View Jobs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Interviews ======= -->
+  <section id="interviews">
+    <div class="container">
+      <h2>Online Interviews</h2>
+      <p>Participate in virtual interviews and skill assessments to showcase your expertise and land your dream job.</p>
+      <div style="text-align:center;">
+        <p>for sample we encourage you all to take up this small example interview "Quiz" by clicking on the below button or on the quiz portal on the top!</p>
+        <a href="quizz.html" class="btn">Take Quiz</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Contact ======= -->
+  <section id="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <p>Have questions? Reach out to us via email at <strong>vassconnect@gmail.com (it works)</strong> or fill out our contact form.</p>
+      <div style="text-align:center;">
+        <a onclick="alert('doesnt work :D')" href="#" class="btn">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 VassConnect. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Toggle navigation menu for mobile
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+
+    // Close menu when clicking a link (mobile)
+    document.querySelectorAll('#nav-links a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('show'));
+    });
+  </script>
+</body>
+</html>
